@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
 import android.graphics.RectF
+import android.util.Log
 import android.widget.Toast
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
@@ -55,6 +56,8 @@ class QrCodeAnalyzer(
                 .addOnSuccessListener { barcodes ->
                     if (barcodes.isNotEmpty()) {
                         for (barcode in barcodes) {
+                            Log.e("QR_CODE", "" + barcode)
+
                             // Handle received barcodes...
                             Toast.makeText(
                                 context,
@@ -62,6 +65,7 @@ class QrCodeAnalyzer(
                                 Toast.LENGTH_SHORT
                             )
                                 .show()
+
                             // Update bounding rect
                             barcode.boundingBox?.let { rect ->
                                 barcodeBoxView.setRect(
